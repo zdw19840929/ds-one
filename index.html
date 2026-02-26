@@ -23,7 +23,10 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro", Helvetica, Arial;
-      background: var(--bg);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(59,130,246,0.15), transparent 40%),
+        radial-gradient(1000px 500px at 90% 10%, rgba(139,92,246,0.12), transparent 45%),
+        linear-gradient(180deg, #020617 0%, #0f172a 60%, #020617 100%);
       color: var(--text);
       line-height: 1.6;
     }
@@ -128,16 +131,53 @@
         height: 52px;
       }
     }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      background: #111827;
+    }
+    
+    @media (max-width: 640px) {
+      .brand {
+        gap: 14px;
+      }
+    
+      .app-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 14px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
     <!-- Header -->
-    <h1>DS One</h1>
-    <p class="subtitle">
-      私有云 · NAS 管理 · 影音 · 音乐 · 电台 · 电子书
-    </p>
+    <div class="brand">
+      <img
+        src="assets/images/app-icon.png"
+        alt="DS One App Icon"
+        class="app-icon"
+      />
+      <div>
+        <h1>DS One</h1>
+        <p class="subtitle">
+          私有云 · NAS 管理 · 影音 · 音乐 · 电台 · 电子书
+        </p>
+      </div>
+    </div>
 
     <div class="card">
       <p>
