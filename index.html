@@ -15,9 +15,7 @@
       --chip: rgba(255,255,255,0.08);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -37,20 +35,9 @@
       padding: 80px 24px;
     }
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      margin-top: 72px;
-      font-size: 30px;
-    }
-
-    .subtitle {
-      color: var(--sub);
-      font-size: 18px;
-    }
+    h1 { font-size: 48px; margin-bottom: 12px; }
+    h2 { margin-top: 72px; font-size: 30px; }
+    .subtitle { color: var(--sub); font-size: 18px; }
 
     .card {
       background: var(--card);
@@ -85,14 +72,13 @@
       100% { transform: translateY(0); }
     }
 
-    /* 平台标签 */
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
+    .app-icon:hover {
+      animation-play-state: paused;
+      transform: translateY(-8px) scale(1.03);
     }
 
+    /* 平台标签 */
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
     .chip {
       padding: 6px 12px;
       font-size: 14px;
@@ -103,24 +89,11 @@
     }
 
     /* Store */
-    .store-badges {
-      display: flex;
-      gap: 16px;
-      margin-top: 28px;
-      flex-wrap: wrap;
-    }
+    .store-badges { display: flex; gap: 16px; margin-top: 28px; flex-wrap: wrap; }
+    .store-badge { height: 60px; transition: transform .15s ease, opacity .15s ease; }
+    .store-badge:hover { transform: scale(1.05); opacity: .9; }
 
-    .store-badge {
-      height: 60px;
-      transition: transform .15s ease, opacity .15s ease;
-    }
-
-    .store-badge:hover {
-      transform: scale(1.05);
-      opacity: .9;
-    }
-
-    /* 截图 */
+    /* Screenshots */
     .screenshots {
       display: flex;
       gap: 20px;
@@ -128,7 +101,6 @@
       padding-bottom: 12px;
       margin-top: 28px;
     }
-
     .screenshots img {
       height: 420px;
       border-radius: 18px;
@@ -136,18 +108,20 @@
       box-shadow: 0 20px 40px rgba(0,0,0,.4);
       transition: transform .25s ease;
     }
+    .screenshots img:hover { transform: translateY(-6px) scale(1.02); }
 
-    .screenshots img:hover {
-      transform: translateY(-6px) scale(1.02);
+    /* 联系按钮 */
+    .btn-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+    .btn {
+      display: inline-flex; align-items: center;
+      padding: 12px 20px; background: #334155; color: white;
+      text-decoration: none; border-radius: 10px; font-weight: 500;
+      transition: opacity 0.2s;
     }
+    .btn:hover { opacity: 0.85; }
 
     /* Footer */
-    .footer {
-      margin-top: 120px;
-      text-align: center;
-      font-size: 14px;
-      color: #64748b;
-    }
+    .footer { margin-top: 120px; text-align: center; font-size: 14px; color: #64748b; }
 
     @media (max-width: 640px) {
       h1 { font-size: 36px; }
@@ -166,7 +140,6 @@
       <div>
         <h1>DS One</h1>
         <p class="subtitle">私有云 · NAS · 影音 · 音乐 · 电台 · 电子书</p>
-
         <div class="chips">
           <span class="chip">iOS</span>
           <span class="chip">Android</span>
@@ -176,15 +149,9 @@
       </div>
     </div>
 
-    <!-- Intro -->
+    <!-- Store Badges -->
     <div class="card">
-      <p>
-        DS One 是一款为个人用户打造的全能型应用，
-        深度支持群晖 NAS、Emby、Jellyfin、Navidrome，
-        集文件管理、Docker 管理、影音与音乐播放于一体，
-        专注于 <strong>私有数据 + 高质量播放体验</strong>。
-      </p>
-
+      <p>立即下载 DS One：</p>
       <div class="store-badges">
         <a href="https://apps.apple.com/cn/app/id6476057278" target="_blank">
           <img src="assets/images/appstore-badge.svg" class="store-badge" />
@@ -201,6 +168,36 @@
       <img src="assets/images/screenshot-1.png" />
       <img src="assets/images/screenshot-2.png" />
       <img src="assets/images/screenshot-3.png" />
+    </div>
+
+    <!-- 详细介绍 -->
+    <h2>应用介绍</h2>
+    <div class="card">
+      <p>
+        DS One 是一款为个人用户打造的全能型应用，
+        深度支持群晖 NAS、Emby、Jellyfin、Navidrome，
+        集文件管理、Docker 管理、影音与音乐播放于一体，
+        专注于 <strong>私有数据 + 高质量播放体验</strong>。
+      </p>
+
+      <h3>核心功能</h3>
+      <ul>
+        <li>📁 群晖 NAS 文件管理 / 套件 / Docker 管理</li>
+        <li>🎬 视频播放：Video Station / Emby / Jellyfin</li>
+        <li>🎵 音乐播放：Audio Station / Navidrome / 电台</li>
+        <li>📚 电子书阅读（OPDS 支持）</li>
+        <li>🚗 CarPlay / 多端适配 / 深色模式</li>
+      </ul>
+    </div>
+
+    <!-- 联系方式 -->
+    <h2>联系 & 支持</h2>
+    <div class="card">
+      <p>你可以通过以下方式找到我，反馈问题或交流想法：</p>
+      <div class="btn-group">
+        <a class="btn" href="https://www.xiaohongshu.com/user/profile/54e68fbb4fac63791d29c5d6" target="_blank">📕 小红书</a>
+        <a class="btn" href="https://t.me/dscloudfeedback" target="_blank">💬 Telegram 群组</a>
+      </div>
     </div>
 
     <!-- Footer -->
