@@ -105,6 +105,29 @@
         font-size: 36px;
       }
     }
+    .store-badges {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    
+    .store-badge {
+      height: 60px;
+      width: auto;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    
+    .store-badge:hover {
+      transform: scale(1.04);
+      opacity: 0.9;
+    }
+    
+    @media (max-width: 640px) {
+      .store-badge {
+        height: 52px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -124,12 +147,21 @@
         专注于<strong>私有数据 + 高质量播放体验</strong>。
       </p>
 
-      <div class="btn-group">
-        <a class="btn" href="https://apps.apple.com/cn/app/id6476057278" target="_blank">
-           App Store
+      <div class="store-badges">
+        <a href="https://apps.apple.com/cn/app/id6476057278" target="_blank">
+          <img
+            src="assets/images/appstore-badge.svg"
+            alt="Download on the App Store"
+            class="store-badge"
+          />
         </a>
-        <a class="btn secondary" href="https://play.google.com/store/apps/details?id=com.cz.player.dsone" target="_blank">
-          ▶ Google Play
+      
+        <a href="https://play.google.com/store/apps/details?id=com.cz.player.dsone" target="_blank">
+          <img
+            src="assets/images/googleplay-badge.png"
+            alt="Get it on Google Play"
+            class="store-badge"
+          />
         </a>
       </div>
     </div>
