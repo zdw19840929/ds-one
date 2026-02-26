@@ -4,60 +4,169 @@
   <meta charset="UTF-8" />
   <title>DS One - 私有云 & 媒体中心</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="DS One 是一款集 NAS 管理、影音播放、音乐、电台、电子书于一体的 App。" />
+  <meta name="description" content="DS One 是一款集 NAS 管理、影音播放、音乐、电台、电子书于一体的全能 App。" />
+
   <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --sub: #94a3b8;
+      --primary: #3b82f6;
+      --border: #1f2937;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro", Helvetica, Arial;
       margin: 0;
-      background: #0f172a;
-      color: #e5e7eb;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro", Helvetica, Arial;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
+
     .container {
-      max-width: 880px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 80px 24px;
+      padding: 72px 24px;
     }
+
     h1 {
       font-size: 48px;
       margin-bottom: 12px;
     }
-    .subtitle {
-      color: #94a3b8;
-      margin-bottom: 32px;
+
+    h2 {
+      margin-top: 64px;
+      font-size: 28px;
     }
+
+    .subtitle {
+      color: var(--sub);
+      margin-bottom: 32px;
+      font-size: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       padding: 12px 20px;
-      background: #3b82f6;
+      background: var(--primary);
       color: white;
       text-decoration: none;
-      border-radius: 8px;
-      margin-right: 12px;
+      border-radius: 10px;
+      font-weight: 500;
+      transition: opacity 0.2s;
     }
+
+    .btn.secondary {
+      background: #334155;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
     .footer {
-      margin-top: 80px;
+      margin-top: 96px;
       font-size: 14px;
       color: #64748b;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 36px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>DS One</h1>
-    <p class="subtitle">你的私有云 · 影音 · 音乐 · 电台 · 电子书</p>
 
-    <p>
-      DS One 是一款面向个人用户的全能型 App，支持群晖 NAS、Emby、Jellyfin、
-      Navidrome、Docker 管理、音视频播放与多端体验。
+  <div class="container">
+    <!-- Header -->
+    <h1>DS One</h1>
+    <p class="subtitle">
+      私有云 · NAS 管理 · 影音 · 音乐 · 电台 · 电子书
     </p>
 
-    <a class="btn" href="#">App Store</a>
-    <a class="btn" href="support.html">技术支持</a>
+    <div class="card">
+      <p>
+        DS One 是一款为个人用户打造的全能型应用，
+        深度支持群晖 NAS、Emby、Jellyfin、Navidrome，
+        集文件管理、Docker 管理、影音与音乐播放于一体，
+        专注于<strong>私有数据 + 高质量播放体验</strong>。
+      </p>
 
+      <div class="btn-group">
+        <a class="btn" href="https://apps.apple.com/cn/app/id6476057278" target="_blank">
+           App Store
+        </a>
+        <a class="btn secondary" href="https://play.google.com/store/apps/details?id=com.cz.player.dsone" target="_blank">
+          ▶ Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <h2>核心功能</h2>
+    <div class="card">
+      <ul>
+        <li>📁 群晖 NAS 文件管理 / 套件 / Docker 管理</li>
+        <li>🎬 视频播放：Video Station / Emby / Jellyfin</li>
+        <li>🎵 音乐播放：Audio Station / Navidrome / 电台</li>
+        <li>📚 电子书阅读（OPDS 支持）</li>
+        <li>🚗 CarPlay / 多端适配 / 深色模式</li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <h2>联系 & 支持</h2>
+    <div class="card">
+      <p>你可以通过以下方式找到我，反馈问题或交流想法：</p>
+
+      <div class="btn-group">
+        <a class="btn secondary" href="https://www.xiaohongshu.com/user/profile/54e68fbb4fac63791d29c5d6" target="_blank">
+          📕 小红书
+        </a>
+        <a class="btn secondary" href="https://t.me/dscloudfeedback" target="_blank">
+          💬 Telegram 群组
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
     <div class="footer">
-      © 2026 大为 · DS One
+      © 2026 大为 · DS One<br />
+      Built with GitHub Pages
     </div>
   </div>
+
 </body>
 </html>
