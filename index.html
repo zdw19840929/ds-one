@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="DS One 是一款集 NAS 管理、影音播放、音乐、电台、电子书于一体的全能 App。" />
 
+  <!-- Favicon 网页标签页图标 -->
+  <link rel="icon" href="assets/images/app-icon.png" type="image/png" />
+
   <style>
     :root {
       --card: rgba(17, 24, 39, 0.85);
@@ -55,23 +58,18 @@
     .store-badge { height: 60px; transition: transform .15s ease, opacity .15s ease; }
     .store-badge:hover { transform: scale(1.05); opacity: .9; }
 
-    /* Screenshots 轮播 */
-    .screenshots-carousel { overflow: hidden; position: relative; margin-top: 28px; }
-    .screenshots-track {
-      display: flex;
-      gap: 20px;
-      transition: transform 0.5s ease;
-    }
-    .screenshots-track img {
+    /* Screenshots 静态展示 */
+    .screenshots { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 12px; margin-top: 28px; }
+    .screenshots img {
       height: 400px;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.08);
       box-shadow: 0 20px 40px rgba(0,0,0,.4);
-      flex-shrink: 0;
       cursor: pointer;
       transition: transform .25s ease;
+      flex-shrink: 0;
     }
-    .screenshots-track img:hover { transform: translateY(-6px) scale(1.02); }
+    .screenshots img:hover { transform: translateY(-6px) scale(1.02); }
 
     /* Lightbox 大图 */
     .lightbox {
@@ -96,7 +94,7 @@
     @media (max-width: 640px) {
       h1 { font-size: 36px; }
       .app-icon { width: 64px; height: 64px; }
-      .screenshots-track img { height: 300px; }
+      .screenshots img { height: 300px; }
     }
   </style>
 </head>
@@ -151,17 +149,15 @@
       </div>
     </div>
 
-    <!-- App 截图轮播 -->
+    <!-- App 截图 -->
     <h2>App 截图</h2>
     <div class="card">
-      <div class="screenshots-carousel">
-        <div class="screenshots-track" id="carousel-track">
-          <img src="assets/images/screenshot-1.jpg" />
-          <img src="assets/images/screenshot-2.jpg" />
-          <img src="assets/images/screenshot-3.jpg" />
-          <img src="assets/images/screenshot-4.jpg" />
-          <img src="assets/images/screenshot-5.jpg" />
-        </div>
+      <div class="screenshots">
+        <img src="assets/images/screenshot-1.jpg" />
+        <img src="assets/images/screenshot-2.jpg" />
+        <img src="assets/images/screenshot-3.jpg" />
+        <img src="assets/images/screenshot-4.jpg" />
+        <img src="assets/images/screenshot-5.jpg" />
       </div>
     </div>
 
@@ -188,47 +184,10 @@
   </div>
 
   <script>
-    // 逐帧无缝轮播
-    const track = document.getElementById('carousel-track');
-    const slides = Array.from(track.children);
-    const slideCount = slides.length;
-
-    // 克隆第一张到最后，最后一张到前面，实现无缝
-    const firstClone = slides[0].cloneNode(true);
-    const lastClone = slides[slideCount-1].cloneNode(true);
-    track.appendChild(firstClone);
-    track.insertBefore(lastClone, slides[0]);
-    
-    let index = 1;
-    const slideWidth = slides[0].offsetWidth + 20; // 图片宽 + gap
-    track.style.transform = `translateX(${-slideWidth * index}px)`;
-
-    function moveNext() {
-      index++;
-      track.style.transition = 'transform 0.5s ease';
-      track.style.transform = `translateX(${-slideWidth * index}px)`;
-    }
-
-    track.addEventListener('transitionend', () => {
-      if(index === slideCount + 1) { // 到克隆第一张
-        track.style.transition = 'none';
-        index = 1;
-        track.style.transform = `translateX(${-slideWidth * index}px)`;
-      }
-      if(index === 0) { // 到克隆最后一张
-        track.style.transition = 'none';
-        index = slideCount;
-        track.style.transform = `translateX(${-slideWidth * index}px)`;
-      }
-    });
-
-    setInterval(moveNext, 3000);
-
     // 点击查看大图
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    const allImgs = track.querySelectorAll('img');
-    allImgs.forEach(img => {
+    document.querySelectorAll('.screenshots img').forEach(img => {
       img.addEventListener('click', () => {
         lightboxImg.src = img.src;
         lightbox.style.display = 'flex';
