@@ -16,7 +16,6 @@
     }
 
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro", Helvetica, Arial;
@@ -30,89 +29,65 @@
     }
 
     .container { max-width: 1040px; margin: 0 auto; padding: 80px 24px; }
-
     h1 { font-size: 48px; margin-bottom: 12px; }
     h2 { margin-top: 72px; font-size: 30px; }
     .subtitle { color: var(--sub); font-size: 18px; }
-
-    .card {
-      background: var(--card);
-      backdrop-filter: blur(14px);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      margin-top: 28px;
-    }
+    .card { background: var(--card); backdrop-filter: blur(14px); border: 1px solid var(--border); border-radius: 20px; padding: 28px; margin-top: 28px; }
 
     /* 品牌区 */
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      margin-bottom: 36px;
-    }
-
+    .brand { display: flex; align-items: center; gap: 24px; margin-bottom: 36px; }
     .app-icon {
       width: 120px;
       height: 120px;
       border-radius: 24px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.5),
-                  inset 0 0 0 1px rgba(255,255,255,0.1);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.1);
       animation: float 4s ease-in-out infinite;
     }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-      100% { transform: translateY(0); }
-    }
-
-    .app-icon:hover {
-      animation-play-state: paused;
-      transform: translateY(-8px) scale(1.03);
-    }
+    @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
+    .app-icon:hover { animation-play-state: paused; transform: translateY(-8px) scale(1.03); }
 
     /* 平台标签 */
     .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .chip {
-      padding: 6px 12px;
-      font-size: 14px;
-      background: var(--chip);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: #e5e7eb;
-    }
+    .chip { padding: 6px 12px; font-size: 14px; background: var(--chip); border: 1px solid var(--border); border-radius: 999px; color: #e5e7eb; }
 
     /* Store */
     .store-badges { display: flex; gap: 16px; margin-top: 28px; flex-wrap: wrap; }
     .store-badge { height: 60px; transition: transform .15s ease, opacity .15s ease; }
     .store-badge:hover { transform: scale(1.05); opacity: .9; }
 
-    /* Screenshots */
-    .screenshots {
+    /* Screenshots 轮播 */
+    .screenshots-carousel { overflow: hidden; position: relative; margin-top: 28px; }
+    .screenshots-track {
       display: flex;
       gap: 20px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      margin-top: 28px;
+      transition: transform 0.5s ease;
     }
-    .screenshots img {
-      height: 420px;
+    .screenshots-track img {
+      height: 400px;
       border-radius: 18px;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,0.08);
       box-shadow: 0 20px 40px rgba(0,0,0,.4);
+      flex-shrink: 0;
+      cursor: pointer;
       transition: transform .25s ease;
     }
-    .screenshots img:hover { transform: translateY(-6px) scale(1.02); }
+    .screenshots-track img:hover { transform: translateY(-6px) scale(1.02); }
+
+    /* 大图弹窗 */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center; align-items: center;
+      z-index: 999;
+    }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
+    .lightbox:active { cursor: zoom-out; }
 
     /* 联系按钮 */
     .btn-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
-    .btn {
-      display: inline-flex; align-items: center;
-      padding: 12px 20px; background: #334155; color: white;
-      text-decoration: none; border-radius: 10px; font-weight: 500;
-      transition: opacity 0.2s;
-    }
+    .btn { display: inline-flex; align-items: center; padding: 12px 20px; background: #334155; color: white; text-decoration: none; border-radius: 10px; font-weight: 500; transition: opacity 0.2s; }
     .btn:hover { opacity: 0.85; }
 
     /* Footer */
@@ -121,11 +96,10 @@
     @media (max-width: 640px) {
       h1 { font-size: 36px; }
       .app-icon { width: 64px; height: 64px; }
-      .screenshots img { height: 320px; }
+      .screenshots-track img { height: 300px; }
     }
   </style>
 </head>
-
 <body>
   <div class="container">
 
@@ -164,21 +138,6 @@
       </ul>
     </div>
 
-    <!-- App 截图 -->
-    <h2>App 截图</h2>
-    <div class="screenshots">
-      <img src="assets/images/screenshot-1.jpg" />
-      <img src="assets/images/screenshot-2.jpg" />
-      <img src="assets/images/screenshot-3.jpg" />
-      <img src="assets/images/screenshot-4.jpg" />
-      <img src="assets/images/screenshot-5.jpg" />
-      <img src="assets/images/screenshot-6.jpg" />
-      <img src="assets/images/screenshot-7.jpg" />
-      <img src="assets/images/screenshot-8.jpg" />
-      <img src="assets/images/screenshot-9.jpg" />
-      <img src="assets/images/screenshot-10.jpg" />
-    </div>
-
     <!-- 下载入口 -->
     <h2>立即体验 DS One</h2>
     <div class="card">
@@ -189,6 +148,20 @@
         <a href="https://play.google.com/store/apps/details?id=com.cz.player.dsone" target="_blank">
           <img src="assets/images/googleplay-badge.svg" class="store-badge" />
         </a>
+      </div>
+    </div>
+
+    <!-- App 截图轮播 -->
+    <h2>App 截图</h2>
+    <div class="card">
+      <div class="screenshots-carousel">
+        <div class="screenshots-track">
+          <img src="assets/images/screenshot-1.jpg" />
+          <img src="assets/images/screenshot-2.jpg" />
+          <img src="assets/images/screenshot-3.jpg" />
+          <img src="assets/images/screenshot-4.jpg" />
+          <img src="assets/images/screenshot-5.jpg" />
+        </div>
       </div>
     </div>
 
@@ -207,7 +180,39 @@
       © 2026 大为 · DS One<br/>
       Built with GitHub Pages
     </div>
-
   </div>
+
+  <!-- Lightbox 大图 -->
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" />
+  </div>
+
+  <script>
+    // 轮播
+    const track = document.querySelector('.screenshots-track');
+    const slides = Array.from(track.children);
+    let index = 0;
+
+    function nextSlide() {
+      index++;
+      if(index >= slides.length) index = 0;
+      const slideWidth = slides[0].offsetWidth + 20;
+      track.style.transform = `translateX(${-slideWidth * index}px)`;
+    }
+    setInterval(nextSlide, 3000);
+
+    // 点击大图
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    slides.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
