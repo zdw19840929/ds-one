@@ -73,7 +73,7 @@
     }
     .screenshots-track img:hover { transform: translateY(-6px) scale(1.02); }
 
-    /* 大图弹窗 */
+    /* Lightbox 大图 */
     .lightbox {
       display: none;
       position: fixed;
@@ -155,7 +155,7 @@
     <h2>App 截图</h2>
     <div class="card">
       <div class="screenshots-carousel">
-        <div class="screenshots-track">
+        <div class="screenshots-track" id="carousel-track">
           <img src="assets/images/screenshot-1.jpg" />
           <img src="assets/images/screenshot-2.jpg" />
           <img src="assets/images/screenshot-3.jpg" />
@@ -188,31 +188,53 @@
   </div>
 
   <script>
-    // 轮播
-    const track = document.querySelector('.screenshots-track');
+    // 逐帧无缝轮播
+    const track = document.getElementById('carousel-track');
     const slides = Array.from(track.children);
-    let index = 0;
+    const slideCount = slides.length;
 
-    function nextSlide() {
+    // 克隆第一张到最后，最后一张到前面，实现无缝
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[slideCount-1].cloneNode(true);
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, slides[0]);
+    
+    let index = 1;
+    const slideWidth = slides[0].offsetWidth + 20; // 图片宽 + gap
+    track.style.transform = `translateX(${-slideWidth * index}px)`;
+
+    function moveNext() {
       index++;
-      if(index >= slides.length) index = 0;
-      const slideWidth = slides[0].offsetWidth + 20;
+      track.style.transition = 'transform 0.5s ease';
       track.style.transform = `translateX(${-slideWidth * index}px)`;
     }
-    setInterval(nextSlide, 3000);
 
-    // 点击大图
+    track.addEventListener('transitionend', () => {
+      if(index === slideCount + 1) { // 到克隆第一张
+        track.style.transition = 'none';
+        index = 1;
+        track.style.transform = `translateX(${-slideWidth * index}px)`;
+      }
+      if(index === 0) { // 到克隆最后一张
+        track.style.transition = 'none';
+        index = slideCount;
+        track.style.transform = `translateX(${-slideWidth * index}px)`;
+      }
+    });
+
+    setInterval(moveNext, 3000);
+
+    // 点击查看大图
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    slides.forEach(img => {
+    const allImgs = track.querySelectorAll('img');
+    allImgs.forEach(img => {
       img.addEventListener('click', () => {
         lightboxImg.src = img.src;
         lightbox.style.display = 'flex';
       });
     });
-    lightbox.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-    });
+    lightbox.addEventListener('click', () => { lightbox.style.display = 'none'; });
   </script>
 </body>
 </html>
